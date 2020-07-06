@@ -4,7 +4,7 @@ class UsersController < ApplicationController
         if @user.save 
             render json: @user
         else
-            render json: { error: "Username already exists"}
+            render json: { error: "Username already exists" }
         end
     end
 
