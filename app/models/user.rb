@@ -3,4 +3,8 @@ class User < ApplicationRecord
 
     validates :username, presence: true, uniqueness: true 
     validates :password, presence: true
+
+    def full_name
+        return "#{self.first_name} #{self.last_name}"
+    end
 end
