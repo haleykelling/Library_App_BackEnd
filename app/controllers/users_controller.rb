@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
     def create
-        @user = User.create(user_params)
-        render json: @user
+        @user = User.new(user_params)
+        if @user.save 
+            render json: @user
+        else
+            render json: { error: "Username already exists"}
+        end
     end
 
     private 
