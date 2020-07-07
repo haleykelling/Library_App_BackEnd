@@ -43,5 +43,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jwt'
 
 gem 'figaro'
-
 gem 'excon'
+
+gem 'fast_jsonapi'

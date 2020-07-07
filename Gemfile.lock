@@ -65,6 +65,8 @@ GEM
     crass (1.0.6)
     erubi (1.9.0)
     excon (0.74.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.13.1)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
@@ -158,6 +160,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   excon
+  fast_jsonapi
   figaro
   jwt
   listen (~> 3.2)
