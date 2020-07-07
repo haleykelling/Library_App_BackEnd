@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
     def create
-        @user = User.new(user_params)
+        @user = User.new user_params 
         if @user.save 
-            render json: @user
+            payload = {user_id: @user.id}
+            token = JWT.encode payload, secret
+            render json: { 
+                token: token, 
+                name: @user.full_name
+            }
         else
             render json: { error: "Username already exists" }
         end
