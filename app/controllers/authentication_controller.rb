@@ -9,7 +9,7 @@ class AuthenticationController < ApplicationController
             token = JWT.encode payload, secret 
             render json: {
                 token: token,
-                name: @user.full_name
+                name: @user.first_name
             }
         end
     end

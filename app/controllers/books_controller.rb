@@ -11,7 +11,16 @@ class BooksController < ApplicationController
         if !@book
             @book = Book.create(book_params)
         end
-        render json: @book
+
+        @saved_book = SavedBook.where(user_id: @user.id, book_id: @book.id)
+        if @saved_book == []
+            @saved_book = SavedBook.create(
+                user_id: @user.id,
+                book_id: @book.id,
+                bookshelf: 1
+            )
+        end
+        render json: @saved_book, include: [:user, :book]
     end
 
     def save_to_favorites
