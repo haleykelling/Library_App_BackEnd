@@ -8,8 +8,8 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.integer :page_count
       t.string :categories
       t.string :image_link
-      t.string :isbn_10
-      
+      t.string :isbn_13
+
       t.timestamps
     end
   end
