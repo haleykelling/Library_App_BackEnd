@@ -6,7 +6,7 @@ class UsersController < ApplicationController
             token = JWT.encode payload, secret
             render json: { 
                 token: token, 
-                name: @user.full_name
+                name: @user.first_name
             }
         else
             render json: { error: "Username already exists" }
@@ -16,6 +16,6 @@ class UsersController < ApplicationController
     private 
 
     def user_params 
-        params.permit(:username, :password, :first_name, :last_name)
+        params.require(:user).permit(:username, :password, :first_name, :last_name)
     end
 end

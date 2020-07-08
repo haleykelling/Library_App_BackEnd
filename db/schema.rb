@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_193319) do
+ActiveRecord::Schema.define(version: 2020_07_08_162859) do
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "authors"
+    t.string "published_date"
+    t.text "description"
+    t.integer "page_count"
+    t.string "categories"
+    t.string "image_link"
+    t.string "isbn_13"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "saved_books", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "book_id", null: false
+    t.integer "bookshelf"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_saved_books_on_book_id"
+    t.index ["user_id"], name: "index_saved_books_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -21,4 +44,6 @@ ActiveRecord::Schema.define(version: 2020_07_06_193319) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "saved_books", "books"
+  add_foreign_key "saved_books", "users"
 end
