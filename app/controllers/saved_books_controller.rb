@@ -1,5 +1,5 @@
 class SavedBooksController < ApplicationController
-    before_action :authenticate, only: [:index]
+    before_action :authenticate, only: [:index, :update, :destroy]
 
     def index 
         @saved_books = SavedBook.where(user_id: @user.id)
@@ -23,6 +23,21 @@ class SavedBooksController < ApplicationController
           end
         end
         return organized_hash
+    end
+
+    def update 
+      @saved_book = SavedBook.find(params[:id])
+      @saved_book.update(bookshelf: params[:bookshelf])
+      render json: @saved_book
+    end
+
+    def destroy
+      @saved_book = SavedBook.find(params[:id])
+      if @saved_book.destroy
+        render json: {message: "Book has been deleted"}
+      else
+        render json: {error: "Book wasn't deleted"}, status: :forbidden
+      end
     end
 
 end

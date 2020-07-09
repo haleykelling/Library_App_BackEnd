@@ -2,8 +2,7 @@ class BooksController < ApplicationController
     before_action :authenticate, only: [:save]
     
     def index
-        @book_facade = BookFacade.new(params[:search])
-        render json: BookSerializer.new(@book_facade)
+        render json: BookSerializer.new(BookFacade.new(params[:search]))
     end
 
     def save
@@ -23,9 +22,6 @@ class BooksController < ApplicationController
         render json: @saved_book, include: [:user, :book]
     end
 
-    def save_to_favorites
-
-    end
 
     private
 
