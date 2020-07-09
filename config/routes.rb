@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   post 'login', to: 'authentication#login'
   get 'book_search', to: 'books#index'
   post 'save_book', to: 'books#save'
+  get 'bookshelves', to: 'saved_books#index'
 end
