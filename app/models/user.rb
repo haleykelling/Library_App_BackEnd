@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
     has_many :saved_books
     has_many :books, through: :saved_books
+
+    has_many :friends
 end
