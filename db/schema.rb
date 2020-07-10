@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_162859) do
+ActiveRecord::Schema.define(version: 2020_07_09_221856) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2020_07_08_162859) do
     t.string "isbn_13"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["friend_id"], name: "index_friends_on_friend_id"
+    t.index ["user_id"], name: "index_friends_on_user_id"
   end
 
   create_table "saved_books", force: :cascade do |t|
