@@ -2,7 +2,15 @@ class BooksController < ApplicationController
     before_action :authenticate, only: [:save]
     
     def index
-        render json: BookSerializer.new(BookFacade.new(params[:search]))
+        render json: BookSerializer.new(BookFacade.new(params[:search], 'default'))
+    end
+
+    def title_search
+        render json: BookSerializer.new(BookFacade.new(params[:search], 'title'))
+    end
+    
+    def author_search
+        render json: BookSerializer.new(BookFacade.new(params[:search], 'author'))
     end
 
     def save
