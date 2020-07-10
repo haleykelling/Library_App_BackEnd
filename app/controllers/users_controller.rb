@@ -9,7 +9,7 @@ class UsersController < ApplicationController
                 name: @user.first_name
             }
         else
-            render json: { error: "Username already exists" }
+            render json: { error: "Invalid request." }, status: :bad_request
         end
     end
 
