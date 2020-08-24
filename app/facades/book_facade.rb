@@ -40,7 +40,7 @@ class BookFacade
     def new_book_instances(volume_data)
         Book.new({
             title: volume_data["title"],
-            authors: volume_data["authors"].join(', '),
+            authors: combine_authors(volume_data["authors"]),
             published_date: volume_data["publishedDate"],
             description: volume_data["description"],
             page_count: volume_data["pageCount"],
@@ -50,6 +50,14 @@ class BookFacade
         })
     end
 
+    def combine_authors(authors)
+        if authors 
+            authors.join(', ')
+        else
+            authors = ''
+        end
+    end
+    
     def combine_categories(categories)
         if categories 
             categories.join(', ')

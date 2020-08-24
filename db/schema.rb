@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_07_09_221856) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "authors"
@@ -26,8 +29,8 @@ ActiveRecord::Schema.define(version: 2020_07_09_221856) do
   end
 
   create_table "friends", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "friend_id"
+    t.bigint "user_id"
+    t.bigint "friend_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["friend_id"], name: "index_friends_on_friend_id"
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_07_09_221856) do
   end
 
   create_table "saved_books", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "book_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
     t.integer "bookshelf"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
